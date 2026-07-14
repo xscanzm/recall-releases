@@ -2,6 +2,13 @@
 
 ## 0.1.0 (2026-07-08)
 
+### 2026-07-14 记忆搜索 FTS、人物关系与 UI 细节优化
+- 新增 observation_search_fts 与 person_relationship 数据库迁移
+- 扩展 MemorySearchRepository/IPC handlers 并补充单测
+- 优化 AppShell/StatusPill/Timeline 组件与 logo 主题样式
+- 完善 PeoplePage 人物页交互与 schemas/prompts 契约
+- 更新 .gitignore 排除本地构建产物与发布仓库
+
 ### 2026-07-13 模型配置简化与 URL 兼容性优化
 - 模型配置表单简化：默认只显示 Endpoint URL、Model 名称、API Key 三个必填字段
 - Provider 名称、温度、最大输出长度折叠到「高级设置」，降低新用户配置门槛
