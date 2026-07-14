@@ -5,19 +5,15 @@
 
 ---
 
-## 下载 Recall 0.1.0
+## 下载 Recall 0.1.1
 
-### 方式一：NSIS 安装包（推荐）
+### Windows 安装包（推荐）
 
-[**Recall-0.1.0-setup.exe**](./dist/Recall-0.1.0-setup.exe) — 91 MB
-适合 Windows 10/11 用户。NSIS 安装包，可选安装路径、桌面/开始菜单快捷方式。
+[**Recall-0.1.1-setup.exe**](https://github.com/xscanzm/recall-releases/releases/download/v0.1.1/Recall-0.1.1-setup.exe) — 约 92 MB
 
-### 方式二：免安装绿色版
+适合 Windows 10/11 x64 用户。NSIS 安装包，可选安装路径，并创建桌面和开始菜单快捷方式。
 
-[Recall.exe (绿色版)](https://github.com/xscanzm/recall-releases/releases/download/v0.1.0/Recall.exe) — 178 MB
-解压到任意目录双击运行，**未做代码签名**，首次启动 Windows Defender 可能提示。
-
-> 安装后桌面会出现 **Recall** 图标，首次启动会引导你配置模型 API Key。
+> 安装包未做代码签名，首次下载或启动时 Windows 可能显示未知发布者提示。安装后首次启动会引导你配置模型 API Key。
 
 ### 校验
 
@@ -26,7 +22,7 @@
 Windows PowerShell:
 
 ```powershell
-Get-FileHash .\Recall-0.1.0-setup.exe -Algorithm SHA256
+Get-FileHash .\Recall-0.1.1-setup.exe -Algorithm SHA256
 ```
 
 ---
@@ -41,14 +37,14 @@ Get-FileHash .\Recall-0.1.0-setup.exe -Algorithm SHA256
 - **自带 API Key**，模型调用直连你配置的 endpoint
 - **本地优先**：截图与数据库全在本地，不上传到 Recall 自有服务器
 
-### 本次记忆系统更新
+### 0.1.1 可靠性更新
 
-- 严格匹配活动窗口，高敏感截图和“立即删除”截图进入真实清理流程
-- 截图批次先持久化，支持失败重试、异常退出恢复和幂等写入
-- 今日时间轴使用 10 分钟成熟窗口和 30 分钟可变尾部，把连续同一事项整理为约 8-15 分钟的自然片段
-- 日报、报告和待收尾引用过的片段会被冻结，尾部重组与 checkpoint 更新使用同一事务
-- “忘掉今天”按本地自然日执行，清空和数据库迁移增加事务及失败保护
-- 新增 FTS5 统一搜索、完整数据导出、SQLite 集成测试和 Electron E2E
+- 修复早期空窗口阻塞 checkpoint、导致当天稍晚数据无法生成时间轴的问题
+- 修复批次第三次失败后永久停留在不可处理 `pending` 状态的问题
+- 批次处理和多模态模型队列并发上限提升至 5
+- 自动兼容 SenseNova 6.7 Flash Lite 所需的 `reasoning_effort: none`
+- 个人复盘生成前先完成时间轴尾部整理
+- 修复 SQLite 集成测试对 migration 文件顺序的错误依赖
 
 详细设计与源码见主仓库 [本次记忆系统升级说明](https://github.com/xscanzm/recall#本次记忆系统升级)。
 
@@ -56,7 +52,7 @@ Get-FileHash .\Recall-0.1.0-setup.exe -Algorithm SHA256
 
 ## 快速开始
 
-1. 下载 `Recall-0.1.0-setup.exe` 并双击安装。
+1. 下载 `Recall-0.1.1-setup.exe` 并双击安装。
 2. 启动 Recall，进入「模型配置」：填入你自带的 OpenAI-compatible 端点的 `endpoint / model / API Key`。
 3. 前往「设置 → 隐私」确认默认黑名单应用和截图保留策略。
 4. 点击「**开始观察**」。
