@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.1.1 (2026-07-14)
+
+### 修复
+- 空时间轴窗口现在会原子推进 checkpoint，避免当天稍晚提交的数据永久无法进入处理窗口
+- 批次第三次失败后正确进入终态，不再形成 `pending / attempts=3` 的搁置记录
+- 启动时只恢复被异常中断的运行中批次，不再复活已耗尽重试的失败批次
+- SenseNova 6.7 Flash Lite 自动使用 `reasoning_effort: none`，JSON repair 请求保持一致
+- SQLite migration 失败保护测试不再依赖目标 migration 必须排在最后
+
+### 改进
+- 截图批次和多模态模型任务的并发上限提升至 5
+- 个人复盘生成前先强制完成当日时间轴尾部整理
+- 增加跨多个空窗口、checkpoint 持久化失败、重试终态和模型兼容性回归测试
+
+### 验证
+- 84 项 Vitest 单元测试
+- TypeScript 主进程与渲染进程类型检查
+- 真实 SQLite migration/事务/FTS 集成测试
+- Electron 首次启动与核心页面 E2E
+- Windows 10/11 x64 NSIS 构建
+
 ## 0.1.0 (2026-07-08)
 
 ### 2026-07-14 记忆搜索 FTS、人物关系与 UI 细节优化
